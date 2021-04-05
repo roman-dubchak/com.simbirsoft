@@ -7,8 +7,10 @@ import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class ClientApp {
     private static UrlConnect urlConnect;
@@ -16,7 +18,7 @@ public class ClientApp {
     //  1. Указать путь до папки, в которой сохраняем файл .html
     //  2. Указать url для скачивания и подсчета слов
     private static final String URLINPUT = "https://www.simbirsoft.com/";
-    private static final String DIRNAME = "*/download";
+    private static final String DIRNAME = "/Users/dns/Desktop/Java/test_task/simbirsoft_08.04/download";
 
     public static void main(String[] args) {
         try {
@@ -50,6 +52,10 @@ public class ClientApp {
         Files.copy(httpURLConnectionGet.getInputStream(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         return file;
     }
+
+//    private static void exStream(File file) throws IOException {
+//        Stream<String> streamFromFiles = Files.lines(file.toPath());
+//    }
 
     private static String fileConvertString(File file) throws IOException {
         StringBuffer fileData = new StringBuffer();
@@ -88,7 +94,7 @@ public class ClientApp {
             }
         }
     }
-
+    
     private static String[] arrStringUniqWord(String[] wordsInUrl) {
         return Arrays.stream(wordsInUrl).distinct().toArray(String[]::new);
     }
